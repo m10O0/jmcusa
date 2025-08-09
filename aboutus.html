@@ -370,12 +370,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            color: #002e00;
             border: 3px solid #15803d;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             animation: logo-pulse 3s ease-in-out infinite;
+            overflow: hidden; 
         }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
 
         @keyframes logo-pulse {
             0%, 100% { transform: scale(1); }
@@ -568,7 +574,9 @@
         <div class="header-main">
             <div class="logo-section">
                 <button class="menu-toggle" onclick="openSideMenu()">☰</button>
-                <div class="logo">JMC</div>
+                <div class="logo">
+                <img src="img/logo.jpg" alt="JMC Logo">
+                </div>
                 <div>
                     <div class="college-name">JMC</div>
                     <div class="since">SINCE 1951</div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>JMC Alumni North American Chapter</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
@@ -370,12 +370,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            color: #002e00;
             border: 3px solid #15803d;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             animation: logo-pulse 3s ease-in-out infinite;
+            overflow: hidden; 
         }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
 
         @keyframes logo-pulse {
             0%, 100% { transform: scale(1); }
@@ -534,7 +540,7 @@
         /* Enhanced Card-style Sections */
         .description-section {
             display: flex;
-            align-items: center;
+            align-items: flex-start;  /* Change from center to flex-start */
             gap: 50px;
             margin: 80px 0;
             position: relative;
@@ -976,41 +982,268 @@
             margin-top: 20px;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .description-section {
-                flex-direction: column;
+            /* Header adjustments */
+            .header {
+                padding: 5px 0;
             }
             
+            .header-main {
+                padding: 0 15px;
+                min-height: 60px;
+            }
+            
+            .college-name {
+                font-size: 18px;
+            }
+            
+            .since {
+                font-size: 10px;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+            }
+            
+            .email-info {
+                display: none;
+            }
+            
+            /* Main content */
+            .container {
+                padding: 0 15px;
+            }
+            
+            .welcome-title {
+                font-size: 24px;
+                line-height: 1.3;
+                margin-bottom: 20px;
+                padding: 0 10px;
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            /* College images */
+            .college-images-container {
+                margin: 20px -15px;
+            }
+            
+            .college-image {
+                min-width: 200px;
+                height: 140px;
+            }
+            
+            .college-tagline {
+                font-size: 11px;
+                padding: 4px 6px;
+            }
+            
+            /* Sections stack vertically */
+            .description-section,
             .benefits-section {
                 flex-direction: column;
+                gap: 20px;
+                margin: 30px 0;
             }
             
-            .side-image, .benefits-image {
+            /* Images become responsive */
+            .side-image,
+            .benefits-image {
                 width: 100%;
-                max-width: 400px;
+                max-width: 100%;
+                height: 200px;
+                align-self: center;
             }
-
-            .welcome-title {
-                font-size: 36px;
+            
+            /* Text sections */
+            .description-text,
+            .benefits-content {
+                padding: 20px;
             }
-
-            .objectives-title, .benefits-title {
-                font-size: 28px;
+            
+            .description-text h2 {
+                font-size: 20px;
+                line-height: 1.4;
             }
-
+            
+            .objectives-title,
+            .benefits-title {
+                font-size: 24px;
+            }
+            
+            /* Grid becomes single column */
             .objectives-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
-
-            .college-image {
-                min-width: 300px;
+            
+            .objective-card {
+                padding: 15px;
             }
-
+            
+            /* Registration section */
+            .registration-section {
+                padding: 30px 15px;
+                margin: 40px 0;
+            }
+            
+            .registration-title {
+                font-size: 20px;
+                line-height: 1.4;
+            }
+            
+            .register-btn {
+                padding: 15px 25px;
+                font-size: 16px;
+            }
+            
+            /* Side menu adjustments */
+            .side-menu {
+                width: 280px;
+                left: -280px;
+            }
+            
+            .menu-item {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+            
+            /* Hide background shapes on mobile */
             .shape {
                 display: none;
             }
         }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 20px;
+            }
+            
+            .college-name {
+                font-size: 16px;
+            }
+            
+            .description-text h2 {
+                font-size: 18px;
+            }
+            
+            .college-image {
+                min-width: 180px;
+                height: 120px;
+            }
+        }
+
+        /* Better touch targets */
+        .menu-toggle,
+        .login-btn,
+        .register-btn,
+        .close-btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Prevent zoom on inputs */
+        input, select, textarea {
+            font-size: 16px;
+        }
+
+        .college-images-container {
+            overflow: hidden;
+            background: transparent;
+            padding: 20px 0;
+        }
+
+        .college-images-scroll {
+            display: flex;
+            gap: 20px; /* equal space between cards */
+            animation: scroll-images 25s linear infinite;
+        }
+
+        .college-image {
+            position: relative;
+            width: 280px;  /* consistent width */
+            height: 200px; /* consistent height */
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            background: #fff;
+        }
+
+        .college-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* prevents distortion */
+        }
+
+        .college-tagline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 8px 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* handles long text gracefully */
+        }
+
+        @keyframes scroll-images {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .side-image {
+            width: 350px;
+            height: 280px;
+            border-radius: 20px;
+            border: 2px solid #15803d;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .side-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .side-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .benefits-image {
+            width: 400px;
+            height: 350px;
+            background: transparent;  /* Remove the gradient background */
+            border-radius: 20px;
+            border: 2px solid #15803d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -1061,7 +1294,10 @@
         <div class="header-main">
             <div class="logo-section">
                 <button class="menu-toggle" onclick="openSideMenu()">☰</button>
-                <div class="logo">JMC</div>
+                <div class="logo">
+                <img src="img/logo.jpg" alt="JMC Logo">
+                </div>
+                
                 <div>
                     <div class="college-name">JMC</div>
                     <div class="since">SINCE 1951</div>
@@ -1079,32 +1315,46 @@
         <!-- Welcome Section -->
         <div class="welcome-section">
             <h1 class="welcome-title">Welcome to Jamal Mohamed College Alumni North American Chapter</h1>
-            
+
             <!-- Horizontal Scrolling College Images -->
             <div class="college-images-container">
                 <div class="college-images-scroll">
                     <div class="college-image">
+                        <img src="img/entrance.jpg" alt="College View 1">
                         <div class="college-tagline">College with Potential for Excellence</div>
                     </div>
                     <div class="college-image">
+                        <img src="img/front.jpg" alt="College View 2">
                         <div class="college-tagline">Academic Excellence Since 1951</div>
                     </div>
                     <div class="college-image">
+                        <img src="img/top.jpg" alt="College View 3">
                         <div class="college-tagline">Shaping Future Leaders</div>
                     </div>
                     <div class="college-image">
+                        <img src="img/long.jpg" alt="College View 4">
                         <div class="college-tagline">Innovation & Tradition</div>
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="college-image">
+                        <img src="img/entrance.jpg" alt="College View 1">
                         <div class="college-tagline">College with Potential for Excellence</div>
                     </div>
                     <div class="college-image">
+                        <img src="img/front.jpg" alt="College View 2">
                         <div class="college-tagline">Academic Excellence Since 1951</div>
+                    </div>
+                    <div class="college-image">
+                        <img src="img/top.jpg" alt="College View 3">
+                        <div class="college-tagline">Shaping Future Leaders</div>
+                    </div>
+                    <div class="college-image">
+                        <img src="img/long.jpg" alt="College View 4">
+                        <div class="college-tagline">Innovation & Tradition</div>
                     </div>
                 </div>
             </div>
-        </div>
+
 
         <!-- Description Section -->
         <div class="description-section">
@@ -1113,7 +1363,9 @@
                 <p>We warmly welcome all JAMALIANS in USA & Canada to join our Alumni Association to serve and strive together as</p>
                 <p class="family-quote">"One United Family of Jamalians"</p>
             </div>
-            <div class="side-image">JAMAL MOHAMED COLLEGE</div>
+           <div class="side-image">
+                <img src="img/side.jpg" alt="Jamal Mohamed College">
+            </div>
         </div>
 
         <!-- Objectives Section with Cards -->
@@ -1178,7 +1430,9 @@
                     <li>The graduate outcome is a very important criterion when we do the exercise of accreditation process (NAAC) – supposed to give details of our former students and also it will be highly helpful when we go for the ranking process ( NIRF) to get the perceptions about the college – when our former students can be contacted thru the respective alumni chapters.</li>
                 </ul>
             </div>
-            <div class="benefits-image">Benefits Visual</div>
+            <div class="benefits-image">
+                <img src="img/overview.jpg" alt="College Overview">
+            </div>
         </div>
 
         <!-- Registration Section -->
