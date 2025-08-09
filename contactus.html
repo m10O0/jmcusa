@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - JMC Alumni North American Chapter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f4f8 50%, #f0f8f0 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            background: #15803d;
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: #002e00;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: #15803d;
+            border-radius: 20px;
+            top: 30%;
+            right: 30%;
+            animation-delay: 4s;
+            transform: rotate(45deg);
+        }
+
+        .shape:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            background: #002e00;
+            border-radius: 50% 0 50% 0;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        /* Particle Effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #15803d;
+            border-radius: 50%;
+            animation: particle-float 12s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Side Menu with Glass Effect */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 2px 0 30px rgba(0,0,0,0.2);
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1000;
+            overflow-y: auto;
+            border-right: 1px solid rgba(21, 128, 61, 0.3);
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .menu-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 46, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(21, 128, 61, 0.1), rgba(0, 46, 0, 0.05));
+        }
+
+        .menu-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #002e00;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .close-btn {
+            background: rgba(21, 128, 61, 0.1);
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #002e00;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(21, 128, 61, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .menu-items {
+            padding: 0;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 18px 20px;
+            color: #002e00;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0, 46, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(21, 128, 61, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            background: rgba(21, 128, 61, 0.05);
+            padding-left: 30px;
+            transform: translateX(5px);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #002e00, #15803d);
+            color: white;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 46, 0, 0.3);
+        }
+
+        .menu-item.active::after {
+            content: '→';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(5px); }
+        }
+
+        /* Overlay with Blur */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Enhanced Marquee */
+        .simple-marquee {
+            background: linear-gradient(90deg, #15803d, #002e00, #15803d);
+            color: #ffffff;
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .simple-marquee::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.1) 0%, 
+                transparent 50%, 
+                rgba(255,255,255,0.1) 100%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .scrolling-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-text 25s linear infinite;
+            will-change: transform;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        @keyframes scroll-text {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Header with Glow Effect */
+        .header {
+            background: linear-gradient(135deg, #002e00 0%, #15803d 100%);
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            z-index: 50;
+            box-shadow: 0 5px 20px rgba(0, 46, 0, 0.3);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #15803d, transparent);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #15803d; }
+            to { box-shadow: 0 0 20px #15803d; }
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #fff, #f0f8f0);
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #002e00;
+            border: 3px solid #15803d;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes logo-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .college-name {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .since {
+            font-size: 12px;
+            color: #a8e6a3;
+            margin-top: 5px;
+            animation: fade-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes fade-glow {
+            from { text-shadow: 0 0 5px #a8e6a3; }
+            to { text-shadow: 0 0 15px #a8e6a3; }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .email-info {
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #15803d, #002e00);
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(21, 128, 61, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(21, 128, 61, 0.4);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Enhanced Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 80px 50px;
+            margin: 60px 0;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(21, 128, 61, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(21, 128, 61, 0.02), rgba(0, 46, 0, 0.01));
+            animation: section-glow 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes section-glow {
+            from { opacity: 0.3; }
+            to { opacity: 0.7; }
+        }
+
+        .contact-title {
+            color: #002e00;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: title-fade-in 1.5s ease-out;
+        }
+
+        @keyframes title-fade-in {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            border-radius: 3px;
+            animation: underline-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes underline-glow {
+            from { box-shadow: 0 0 10px rgba(21, 128, 61, 0.5); }
+            to { box-shadow: 0 0 20px rgba(21, 128, 61, 0.8); }
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            padding: 50px 35px;
+            border-radius: 25px;
+            border: 2px solid rgba(21, 128, 61, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(21, 128, 61, 0.05), rgba(0, 46, 0, 0.02));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(21,128,61,0.25);
+            border-color: #15803d;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover::after {
+            opacity: 1;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 15px 35px rgba(21,128,61,0.4);
+        }
+
+        .contact-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(21,128,61,0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 2;
+        }
+
+        .contact-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: shimmer-icon 3s infinite;
+        }
+
+        @keyframes shimmer-icon {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .icon-phone {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 28px;
+        }
+
+        .icon-email {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 28px;
+        }
+
+        .icon-location {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 28px;
+        }
+
+        .contact-label {
+            color: #15803d;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-value {
+            color: #2c3e50;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+        }
+
+        .contact-value a {
+            color: #15803d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .contact-value a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #15803d, #16a34a);
+            transition: width 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: #16a34a;
+            transform: translateY(-1px);
+        }
+
+        .contact-value a:hover::after {
+            width: 100%;
+        }
+
+        /* Enhanced Chat Section */
+        .chat-section {
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            color: white;
+            padding: 60px 50px;
+            border-radius: 25px;
+            margin-top: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .chat-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="70" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+            animation: pattern-move 20s linear infinite;
+        }
+
+        @keyframes pattern-move {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        .chat-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .chat-description {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .chat-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 18px 35px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Crimson Text', serif;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .chat-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Enhanced Map Section */
+        .map-section {
+            margin-top: 60px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .map-title {
+            color: #002e00;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .map-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            border-radius: 2px;
+            animation: underline-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes underline-pulse {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            border: 2px solid rgba(21, 128, 61, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(21, 128, 61, 0.02), rgba(0, 46, 0, 0.01));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .map-container:hover {
+            border-color: #15803d;
+            box-shadow: 0 15px 35px rgba(21,128,61,0.15);
+            transform: translateY(-3px);
+        }
+
+        .map-container:hover::before {
+            opacity: 1;
+        }
+
+        .map-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .map-icon {
+            font-size: 56px;
+            color: #15803d;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(21, 128, 61, 0.2);
+            animation: icon-float 3s ease-in-out infinite;
+        }
+
+        @keyframes icon-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .map-placeholder p {
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .map-placeholder small {
+            color: #666;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, #002e00 0%, #15803d 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            animation: footer-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes footer-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .footer-email {
+            font-size: 20px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 18px 35px;
+            border-radius: 35px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .footer-email:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .alumni-account-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 18px 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 40px;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .alumni-account-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .copyright {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-section {
+                padding: 60px 30px;
+            }
+            
+            .contact-title {
+                font-size: 36px;
+            }
+
+            .college-name {
+                font-size: 28px;
+            }
+
+            .shape {
+                display: none;
+            }
+
+            .chat-section {
+                padding: 40px 30px;
+            }
+
+            .map-container {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-title {
+                font-size: 28px;
+            }
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+
+            .contact-icon {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <div class="menu-title">Menu</div>
+            <button class="close-btn" onclick="closeSideMenu()">×</button>
+        </div>
+         <div class="menu-items">
+            <a href="index.html" class="menu-item">HOME</a>
+            <a href="aboutus.html" class="menu-item">ABOUT US</a>
+            <a href="testimones.html" class="menu-item">ALUMNI'S TESTIMONIAL</a>
+            <a href="suggestions.html" class="menu-item">SUGGESTIONS</a>
+            <a href="registration.html" class="menu-item">REGISTRATION</a>
+            <a href="#" class="menu-item">MEETING MINUTES</a>
+            <a href="#" class="menu-item">ALUMNI CONTRIBUTIONS</a>
+            <a href="milestones.html" class="menu-item">COLLEGE MILESTONES</a>
+            <a href="uploadmm.html" class="menu-item">UPLOAD MEETING MINUTES</a>
+            <a href="profile.html" class="menu-item">MY PROFILE</a>
+            <a href="contactus.html" class="menu-item active">CONTACT US</a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeSideMenu()"></div>
+
+    <!-- Enhanced Marquee -->
+    <div class="simple-marquee">
+        <div class="scrolling-text">
+            All Alumni members, Welcome to JMC Alumni NA Chapter. Please register if you haven't done yet. If you've already registered, kindly update your profile. Thank you!
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-main">
+            <div class="logo-section">
+                <button class="menu-toggle" onclick="openSideMenu()">☰</button>
+                <div class="logo">JMC</div>
+                <div>
+                    <div class="college-name">JMC</div>
+                    <div class="since">SINCE 1951</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="email-info">portal@jmcalumniusa.com</div>
+                <a href="login.html" class="login-btn">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h1 class="contact-title">Contact Information</h1>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon icon-phone"></div>
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">
+                        <a href="tel:+919360963012">+91 99999 99999</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon icon-email"></div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:princi@jmc.edu">abc@jmc.edu</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon icon-location"></div>
+                    <div class="contact-label">Address</div>
+                    <div class="contact-value">
+                        North America
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-section">
+                <div class="chat-title">Need Help?</div>
+                <div class="chat-description">Say something to start a live chat!</div>
+                <button class="chat-btn">Start Live Chat</button>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section">
+                <h3 class="map-title">Find Us</h3>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div class="map-icon">📍</div>
+                        <p>Interactive Map Coming Soon</p>
+                        <small>North America</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-email">portal@jmcalumniusa.com</div>
+        <button class="alumni-account-btn">ALUMNI ACCOUNT</button>
+        <div class="copyright">©2025 JMC Alumni USA Chapter</div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function openSideMenu() {
+            document.getElementById('sideMenu').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSideMenu() {
+            document.getElementById('sideMenu').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSideMenu();
+            }
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+
+            // Add parallax effect to shapes
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.shape');
+                
+                shapes.forEach((shape, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            // Add staggered animation to contact cards
+            const contactCards = document.querySelectorAll('.contact-card');
+            contactCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 + (index * 200));
+            });
+        });
+
+        // Add mouse follow effect
+        document.addEventListener('mousemove', function(e) {
+            const shapes = document.querySelectorAll('.shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.05 + (index * 0.01);
+                const x = (mouseX - 0.5) * 50 * speed;
+                const y = (mouseY - 0.5) * 50 * speed;
+                
+                shape.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Add click animation to contact cards
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Add hover sound effect simulation (visual feedback)
+        document.querySelectorAll('.contact-card, .chat-btn, .alumni-account-btn').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.filter = 'brightness(1.05)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.filter = 'brightness(1)';
+            });
+        });
+    </script>
+</body>
+</html>
