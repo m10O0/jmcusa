@@ -34,15 +34,44 @@
     }
 }
 
-/* Header Responsive Adjustments */
+/* Enhanced Header Responsive Adjustments with Login Button Fix */
 @media (max-width: 768px) {
     .header-main {
         padding: 0 15px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap; /* Changed from wrap to nowrap */
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        min-height: 70px;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0; /* Allows flex item to shrink below content size */
+    }
+    
+    .header-center {
+        display: flex;
+        align-items: center;
+        flex: 2;
+        justify-content: center;
+        min-width: 0;
+    }
+    
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0; /* Prevents shrinking */
     }
     
     .college-name {
         font-size: 24px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .since {
@@ -54,20 +83,65 @@
         height: 60px !important;
         margin-right: 10px !important;
         font-size: 20px !important;
+        flex-shrink: 0;
     }
     
     .email-info {
         display: none;
     }
     
-    .header-right {
-        gap: 10px;
+    /* Hamburger menu button */
+    .menu-toggle {
+        order: -1; /* Places it first in header-right */
+        margin-right: 10px !important;
+        padding: 8px !important;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        min-width: 44px;
+        flex-shrink: 0;
+    }
+    
+    /* Login button specific fixes */
+    .login-btn {
+        padding: 10px 16px !important;
+        font-size: 14px !important;
+        background: rgba(255, 255, 255, 0.9);
+        color: #155e3e;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+    
+    .login-btn:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: translateY(-1px);
     }
 }
 
 @media (max-width: 480px) {
+    .header-main {
+        padding: 0 10px;
+        min-height: 60px;
+    }
+    
     .college-name {
-        font-size: 20px !important;
+        font-size: 18px !important;
+        max-width: 180px;
     }
     
     .logo {
@@ -77,13 +151,46 @@
     }
     
     .menu-toggle {
-        margin-right: 10px !important;
-        padding: 8px !important;
+        margin-right: 8px !important;
+        padding: 6px !important;
+        min-height: 36px;
+        min-width: 36px;
     }
     
     .login-btn {
-        padding: 8px 16px !important;
-        font-size: 14px !important;
+        padding: 8px 14px !important;
+        font-size: 13px !important;
+        min-height: 36px;
+    }
+    
+    .header-right {
+        gap: 8px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .college-name {
+        font-size: 16px !important;
+        max-width: 150px;
+    }
+    
+    .logo {
+        width: 45px !important;
+        height: 45px !important;
+        margin-right: 8px !important;
+    }
+    
+    .login-btn {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        min-height: 32px;
+    }
+    
+    .menu-toggle {
+        min-height: 32px;
+        min-width: 32px;
+        padding: 4px !important;
     }
 }
 
@@ -640,6 +747,31 @@
 
 /* Landscape Orientation Adjustments */
 @media (max-height: 500px) and (orientation: landscape) {
+    .header-main {
+        min-height: 50px;
+        padding: 5px 15px;
+    }
+    
+    .logo {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 16px !important;
+    }
+    
+    .college-name {
+        font-size: 20px !important;
+    }
+    
+    .login-btn {
+        padding: 6px 12px !important;
+        min-height: 32px;
+    }
+    
+    .menu-toggle {
+        min-height: 32px;
+        min-width: 32px;
+    }
+    
     .welcome-section {
         padding: 20px 0 !important;
     }
@@ -709,5 +841,30 @@
     
     .shape, .particle {
         animation: none !important;
+    }
+}
+
+/* Ensure proper flex behavior for the main header container */
+.header-main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* Fix for any overflow issues */
+@media (max-width: 768px) {
+    .header {
+        overflow-x: hidden;
+    }
+    
+    .header-main * {
+        flex-shrink: 1;
+    }
+    
+    .header-main .logo,
+    .header-main .menu-toggle,
+    .header-main .login-btn {
+        flex-shrink: 0;
     }
 }
