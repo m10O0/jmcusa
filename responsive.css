@@ -34,163 +34,156 @@
     }
 }
 
-/* Enhanced Header Responsive Adjustments with Login Button Fix */
+/* Enhanced Header Responsive Adjustments - CORRECTED VERSION */
 @media (max-width: 768px) {
     .header-main {
-        padding: 0 15px;
-        flex-wrap: nowrap; /* Changed from wrap to nowrap */
-        align-items: center;
-        justify-content: space-between;
-        height: auto;
-        min-height: 70px;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 15px !important;
+        gap: 10px !important;
     }
     
-    .header-left {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        min-width: 0; /* Allows flex item to shrink below content size */
+    /* Logo Section (left side) */
+    .logo-section {
+        display: flex !important;
+        align-items: center !important;
+        flex: 1 !important;
+        min-width: 0 !important;
     }
     
-    .header-center {
-        display: flex;
-        align-items: center;
-        flex: 2;
-        justify-content: center;
-        min-width: 0;
+    /* Menu Toggle Button */
+    .menu-toggle {
+        margin-right: 15px !important;
+        padding: 8px !important;
+        font-size: 20px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        flex-shrink: 0 !important;
     }
     
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-shrink: 0; /* Prevents shrinking */
-    }
-    
-    .college-name {
-        font-size: 24px !important;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    
-    .since {
-        font-size: 10px !important;
-    }
-    
+    /* Logo */
     .logo {
         width: 60px !important;
         height: 60px !important;
         margin-right: 10px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* College Name and Since */
+    .college-name {
         font-size: 20px !important;
-        flex-shrink: 0;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 200px !important;
     }
     
+    .since {
+        font-size: 9px !important;
+        margin-top: 2px !important;
+    }
+    
+    /* Header Right Section */
+    .header-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Hide Email on Mobile */
     .email-info {
-        display: none;
+        display: none !important;
     }
     
-    /* Hamburger menu button */
-    .menu-toggle {
-        order: -1; /* Places it first in header-right */
-        margin-right: 10px !important;
-        padding: 8px !important;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
-        color: white;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        min-width: 44px;
-        flex-shrink: 0;
-    }
-    
-    /* Login button specific fixes */
+    /* Login Button - Main Fix */
     .login-btn {
         padding: 10px 16px !important;
         font-size: 14px !important;
-        background: rgba(255, 255, 255, 0.9);
-        color: #155e3e;
-        border: none;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 40px;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-    }
-    
-    .login-btn:hover {
-        background: rgba(255, 255, 255, 1);
-        transform: translateY(-1px);
+        border-radius: 20px !important;
+        white-space: nowrap !important;
+        min-height: 40px !important;
+        min-width: 60px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
     }
 }
 
 @media (max-width: 480px) {
     .header-main {
-        padding: 0 10px;
-        min-height: 60px;
+        padding: 0 10px !important;
+        gap: 8px !important;
     }
     
-    .college-name {
+    .menu-toggle {
+        margin-right: 10px !important;
+        padding: 6px !important;
         font-size: 18px !important;
-        max-width: 180px;
+        min-width: 36px !important;
+        min-height: 36px !important;
     }
     
     .logo {
         width: 50px !important;
         height: 50px !important;
-        font-size: 18px !important;
+        margin-right: 8px !important;
     }
     
-    .menu-toggle {
-        margin-right: 8px !important;
-        padding: 6px !important;
-        min-height: 36px;
-        min-width: 36px;
+    .college-name {
+        font-size: 16px !important;
+        max-width: 140px !important;
+    }
+    
+    .since {
+        font-size: 8px !important;
     }
     
     .login-btn {
-        padding: 8px 14px !important;
-        font-size: 13px !important;
-        min-height: 36px;
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        min-height: 36px !important;
+        min-width: 50px !important;
     }
     
     .header-right {
-        gap: 8px;
+        gap: 8px !important;
     }
 }
 
-/* Extra small screens */
 @media (max-width: 360px) {
+    .header-main {
+        padding: 0 8px !important;
+    }
+    
     .college-name {
-        font-size: 16px !important;
-        max-width: 150px;
+        font-size: 14px !important;
+        max-width: 120px !important;
     }
     
     .logo {
         width: 45px !important;
         height: 45px !important;
-        margin-right: 8px !important;
-    }
-    
-    .login-btn {
-        padding: 6px 12px !important;
-        font-size: 12px !important;
-        min-height: 32px;
+        margin-right: 6px !important;
     }
     
     .menu-toggle {
-        min-height: 32px;
-        min-width: 32px;
+        margin-right: 8px !important;
+        min-width: 32px !important;
+        min-height: 32px !important;
         padding: 4px !important;
+    }
+    
+    .login-btn {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+        min-height: 32px !important;
+        min-width: 45px !important;
     }
 }
 
