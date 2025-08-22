@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Registration - JMC Alumni North American Chapter</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="responsive.css">
     <style>
         * {
             margin: 0;
@@ -788,7 +787,8 @@
             border: 1px solid rgba(21, 128, 61, 0.2);
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .captcha-image {
@@ -797,18 +797,17 @@
             border-radius: 8px;
             padding: 15px 20px;
             font-family: 'Courier New', monospace;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: #333;
-            min-width: 140px;
+            min-width: 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px),
-                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(21,128,61,0.05) 2px, rgba(21,128,61,0.05) 4px);
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
         }
         
         .captcha-image::before {
@@ -835,15 +834,21 @@
 
         .captcha-refresh {
             background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
             cursor: pointer;
             color: #666;
             transition: all 0.3s ease;
-            font-size: 14px;
+            font-size: 16px;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
-
+        
         .captcha-refresh:hover {
             background: #e9ecef;
             color: #15803d;
@@ -855,6 +860,9 @@
             border: 2px solid rgba(21, 128, 61, 0.2);
             border-radius: 8px;
             font-size: 16px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .submit-btn {
@@ -1129,7 +1137,7 @@
                 <img src="img/logo.jpg" alt="JMC Logo">
                 </div>
                 <div>
-                    <div class="college-name">Jamal Mohamed College</div>
+                    <div class="college-name">JMC</div>
                     <div class="since">SINCE 1951</div>
                 </div>
             </div>
@@ -1503,38 +1511,17 @@
             }
         });
 
-        // Generate mathematical CAPTCHA
+        // Generate alphanumeric CAPTCHA
         function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 25) + 1;
-            const num2 = Math.floor(Math.random() * 20) + 1;
-            const operations = ['+', '-', '×'];
-            const operation = operations[Math.floor(Math.random() * operations.length)];
-            
-            let question, answer;
-            
-            switch(operation) {
-                case '+':
-                    question = `${num1} + ${num2}`;
-                    answer = num1 + num2;
-                    break;
-                case '-':
-                    const larger = Math.max(num1, num2);
-                    const smaller = Math.min(num1, num2);
-                    question = `${larger} - ${smaller}`;
-                    answer = larger - smaller;
-                    break;
-                case '×':
-                    const smallNum1 = Math.floor(Math.random() * 12) + 1;
-                    const smallNum2 = Math.floor(Math.random() * 9) + 1;
-                    question = `${smallNum1} × ${smallNum2}`;
-                    answer = smallNum1 * smallNum2;
-                    break;
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             
-            document.getElementById('captchaImage').textContent = question;
-            captchaAnswer = answer;
+            document.getElementById('captchaImage').textContent = captcha;
+            captchaAnswer = captcha;
         }
-
         // Advanced password strength checker
         function checkPasswordStrength(password) {
             let score = 0;
@@ -1964,7 +1951,7 @@
             }
             
             // CAPTCHA validation
-            if (parseInt(captchaInput) !== captchaAnswer) {
+            if (captchaInput.toUpperCase() !== captchaAnswer.toUpperCase()) {
                 isValid = false;
                 errors.push('CAPTCHA answer is incorrect');
                 document.getElementById('captcha-error').textContent = 'Incorrect CAPTCHA answer';
@@ -2118,6 +2105,4 @@
         });
     </script>
 </body>
-
 </html>
-
